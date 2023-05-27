@@ -7,6 +7,7 @@ import DesktopItem from "./DesktopItem";
 import Avatar from "../avatar";
 
 import { User } from "@prisma/client";
+import SettingModal from "./SettingModal";
 
 interface DesktopSidebarProps {
   currentUser: User;
@@ -17,8 +18,14 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className="
+    <>
+      <SettingModal
+        currentUser={currentUser}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
+      <div
+        className="
         hidden
         lg:fixed
         lg:inset-y-0
@@ -33,38 +40,38 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
         lg:flex-col
         justify-between
     "
-    >
-      <nav
-        className="
+      >
+        <nav
+          className="
           mt-4
           flex
           flex-col
           justify-between
         "
-      >
-        <ul
-          role="list"
-          className="
+        >
+          <ul
+            role="list"
+            className="
             flex
             flex-col
             items-center
             space-y-1
         "
-        >
-          {routes.map((item) => (
-            <DesktopItem
-              key={item.label}
-              href={item.href}
-              icon={item.icon}
-              label={item.label}
-              active={item.active as boolean}
-              onClick={item.onClick as any}
-            />
-          ))}
-        </ul>
-      </nav>
-      <nav
-        className="
+          >
+            {routes.map((item) => (
+              <DesktopItem
+                key={item.label}
+                href={item.href}
+                icon={item.icon}
+                label={item.label}
+                active={item.active as boolean}
+                onClick={item.onClick as any}
+              />
+            ))}
+          </ul>
+        </nav>
+        <nav
+          className="
             mt-4
             flex
             flex-col
@@ -72,19 +79,20 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
             items-center
 
         "
-      >
-        <div
-          className="
+        >
+          <div
+            className="
             cursor-pointer
             hover:opacity-75
             transition
           "
-          onClick={() => setIsOpen((cur) => !cur)}
-        >
-          <Avatar user={currentUser} />
-        </div>
-      </nav>
-    </div>
+            onClick={() => setIsOpen((cur) => !cur)}
+          >
+            <Avatar user={currentUser} />
+          </div>
+        </nav>
+      </div>
+    </>
   );
 };
 

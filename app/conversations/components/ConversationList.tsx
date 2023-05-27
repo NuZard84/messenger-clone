@@ -15,6 +15,7 @@ interface ConversationListProps {
 
 const ConversationList: React.FC<ConversationListProps> = ({ intialItems }) => {
   const [items, setItems] = useState(intialItems);
+  c;
 
   const router = useRouter();
 
