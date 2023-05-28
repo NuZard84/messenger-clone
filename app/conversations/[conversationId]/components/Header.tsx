@@ -7,6 +7,7 @@ import Link from "next/link";
 import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2";
 import Avatar from "@/app/components/avatar";
 import ProfileDrawer from "./ProfileDrawer";
+import { timeStamp } from "console";
 
 interface HeaderProps {
   conversation: Conversation & {
@@ -19,9 +20,10 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const statusText = useMemo(() => {
-    if (conversation.isGroup) `${conversation.users.length} members`;
-
-    return "Active";
+    if (!conversation?.isGroup) {
+      return "Active";
+    }
+    return `${conversation?.users?.length} members`;
   }, [conversation]);
 
   return (
