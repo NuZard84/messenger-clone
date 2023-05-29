@@ -5,6 +5,7 @@ import { HiArrowLeftOnRectangle, HiUsers } from "react-icons/hi2";
 import { signOut } from "next-auth/react";
 
 import useConversation from "./useConversation";
+import Avatar from "../components/avatar";
 
 const useRoutes = () => {
   const pathName = usePathname();
@@ -12,6 +13,11 @@ const useRoutes = () => {
 
   const routes = useMemo(
     () => [
+      {
+        label: "settingModal",
+        href: "/",
+        icon: Avatar,
+      },
       {
         label: "Chat",
         href: "/conversations",
